@@ -25,6 +25,19 @@ def preprocess_data(data):
     table.insert(0, "date", date)
     return table
 
+# give the log returns of the data
+def preprocess_data_log_returns(data):
+    data = pd.DataFrame(data)
+    table = pd.json_normalize(data['quotes'])
+    date = list(data.index)
+    table.insert(0, "date", date)
+    length=int(table.shape[0]-1)
+    col=int(table.shape[1])
+    for p in range(1,col):
+        for i in range(0,length):
+            table.iloc[i,p]=np.log(table.iloc[i+1,p]/table.iloc[i,p])
+    table.drop(table.tail(1).index, inplace=True)
+    return table
 
 # def value_at_risk(data, alpha=0.95):
 #     sorted_df = data.sort_values(ascending=True)
