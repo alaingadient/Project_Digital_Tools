@@ -1,2 +1,0 @@
-random_dataframe_DT.csv filter=lfs diff=lfs merge=lfs -text
-random_dataframe_DT_feather.txt filter=lfs diff=lfs merge=lfs -text
