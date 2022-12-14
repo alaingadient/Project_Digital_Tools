@@ -53,19 +53,18 @@ def preprocess_data_log_returns(data):
 #                        + sum(sorted_df[sorted_df > var]))
 #     return es
 
-# needs to be verified here is the ES with the whole dataset in a for loop and also the historical ES is used as a sum.
-# def expected_shortfall(data, alpha=0.95):
-#    es_table=pd.DataFrame()
-#    for i in table.columns:
-#        if i=="date":
-#            continue
-#        data_column=table[i]
-#        sorted_df = data_column.sort_values(ascending=True)
-#        var = value_at_risk(sorted_df, alpha=alpha)
-#        p=sum(k>var for k in data_column)
-#        es = 1/p * sum(sorted_df[sorted_df > var])
-#        es_table[i]=[es]
-#    return es_table
+def expected_shortfall(data, alpha):
+    es_table=pd.DataFrame()
+    for i in table.columns:
+        if i=="date":
+            continue
+        data_column=table[i]
+        sorted_df = data_column.sort_values(ascending=True)
+        var = value_at_risk(sorted_df, alpha=alpha)
+        p=sum(k<var for k in data_column)
+        es = 1/p * sum(sorted_df[sorted_df < var])
+        es_table[i]=[es]
+    return es_table
 
 
 
