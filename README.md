@@ -21,6 +21,8 @@ The results will be shown in a Latex presentation and a Document.
 
 How to get the data
 ---
+First Download the whole folder from Github
+
 run the Get_ES_and_Variance by conda
 
 Create all tables give all the tables used in the Document
