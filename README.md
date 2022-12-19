@@ -1,4 +1,4 @@
-which of the G10 currencies is the riskiest to hold for a Swiss resident?
+Which of the G10 currencies is the riskiest to hold for a Swiss resident?
 ====
 
 Our project is about finding which will be the riskiest currencies, in term of an Riskmeassure, for a Swiss citizen who has CHF and has the G10 curencies (expect Switzerland) to choose.
