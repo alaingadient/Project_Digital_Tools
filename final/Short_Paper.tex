@@ -18,15 +18,6 @@
 \usepackage{float}
 \graphicspath{ {/Users/gexuanzhe/Desktop/Digital_Tools_For_Finance} }
 
-% bibliography
-\usepackage[
-    backend=biber,
-    style=bwl-FU,
-    url=false,
-    doi=false,
-    eprint=false
-]{biblatex}
-\addbibresource{cite.bib}
 
 % ---------------------------------------------------------------------------
 
@@ -55,12 +46,14 @@ Sample Variance is used to estimate the risk. the formula is as follows:
 	s^2 =  \frac{\sum_{i}^{N}{(X-\mu)^2}}{N-1} 
 \end{align}
 
-Expected shortfall is expressed as follows:
+Expected shortfall is expressed as follows:\cite{Acerbi and Tasche 02}
 
 \begin{align}
 ES_{\alpha}(X) = -\frac{1}{\alpha}\int_{0}^{\alpha} VaR_{\gamma}(X)d\gamma\\
 VaR_{\alpha}(X) = - inf \{x \in R:F_{X}(X)>\alpha \}
 \end{align}
+ES is a coherent Risk Measure and has some nice properties\cite{Koji and Masaaki05}
+Therefore ES was used as a Riskmeasure and because it is a downside Riskmeasure.
 
 \section{Empirical Results}
 \begin{table}
@@ -109,8 +102,25 @@ The figure 1 shows the distribution of the returns of all these currency positio
 \section{Conclusion}
 Both of this riskmeasures has shown that CHF/NOK is the riskiest over the year of 2021. Therefore, during the 2021, we come to a conlusion that CHF/NOK is the riskiest Currency pair position to hold. In another words, to hold the he Norwegian krone (NOK) is the riskiest strategy for a Swiss citizen.
 
-\cite{CieslakEtAlStockReturns}
-\printbibliography
+\begin{thebibliography}{10}
+
+\bibitem {Acerbi and Tasche 02}
+	Acerbi Carlo and Tasche Dirk,
+	\textit{On the coherent of expected shortfall},
+  	Journal of Banking and Finance,
+  	26 (7)
+  	2002.
+	https://doi.org/10.1016/S0378-4266(02)00283-2.
+\bibitem{Koji and Masaaki05}
+	Koji Inui, Masaaki Kijima,
+	\textit{On the significance of expected shortfall as a coherent risk measure},
+  	Journal of Banking and Finance,
+  	29 (4)
+  	2005.
+	https://doi.org/10.1016/j.jbankfin.2004.08.005.
+
+\end{thebibliography}
+
 
 
 
