@@ -1,0 +1,118 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+% Placeholder paragraphs with text
+\usepackage{blindtext}
+
+% No indent for new paragraphs
+\setlength\parindent{0pt}
+
+% set paper standard
+\usepackage[a4paper, left=20mm,right=20mm,top=25mm,bottom=25mm]{geometry}
+
+% insert table
+\usepackage{booktabs} 
+
+% import a picture
+\usepackage{graphicx}
+\usepackage{float}
+\graphicspath{ {/Users/gexuanzhe/Desktop/Digital_Tools_For_Finance} }
+
+% bibliography
+\usepackage[
+    backend=biber,
+    style=bwl-FU,
+    url=false,
+    doi=false,
+    eprint=false
+]{biblatex}
+\addbibresource{cite.bib}
+
+% ---------------------------------------------------------------------------
+
+\begin{document}
+
+\title{Which of the G10 Currencies is the Riskiest to Hold for a Swiss Resident?}
+\author{Alain Gadient, Hanxiao Qu, Mann-Tchi Dang, Xuanzhe Ge}
+\date{\today}
+\maketitle
+
+\section{Introduction}
+
+The G10 currencies are the most extensively traded currencies in the foreign exchange market, including the US dollar (USD), the euro (EUR), the Japanese yen (JPY), the UK pound sterling (GBP), the Swiss franc (CHF), the Norwegian krone (NOK), the Swedish krona (SEK), the Canadian dollar (CAD), the Australian dollar (AUD) and the New Zealand dollar (NZD). \\
+
+Our project is about finding the riskiest currencies among those of G10 currencies for a Swiss citizen who holds CHF. The two risk measuring methods we will use in this short paper are calculating Expected Shortfall and Variance respectively. The next part is to briefly introduce the data we use and then we go on to the model specification. The fourth section of this paper is about showing the empirical results we calculate and finally we come to a conclusion based on our analysis.   
+
+\section{Data}
+
+Daily data of the exchange rate of currency of one year from 2020 to 2022 is used. The data is retrieved  from the API of apilayer as one of the known sources for apis. Some spot exchange rate data is retrieved from several major forex data providers in real-time, validated, processed and delivered hourly, every 10 minutes, or even within the 60-second market window.
+
+\section{Model}
+
+Sample Variance is used to estimate the risk. the formula is as follows:
+
+\begin{align}
+	s^2 =  \frac{\sum_{i}^{N}{(X-\mu)^2}}{N-1} 
+\end{align}
+
+Expected shortfall is expressed as follows:
+
+\begin{align}
+ES_{\alpha}(X) = -\frac{1}{\alpha}\int_{0}^{\alpha} VaR_{\gamma}(X)d\gamma\\
+VaR_{\alpha}(X) = - inf \{x \in R:F_{X}(X)>\alpha \}
+\end{align}
+
+\section{Empirical Results}
+\begin{table}
+   \setlength{\tabcolsep}{0.9mm}{
+   \begin{tabular}{cccccccccc}
+   \toprule
+             &CHF/USD & CHF/EUR & CHF/GBP & CHF/JPY & CHF/AUD & CHF/NZD & CHF/CAD & CHF/NOK & CHF/SEK\\
+   \midrule
+   Mean & 0.000228 & 0.000005 & 0.000142 & 0.000087 & -0.000022 & 0.000294 & 0.000178 & 0.000184 & -0.000106\\
+   Median & 0.000000 & 0.000000 & 0.000000 & 0.000000 & 0.000000 & 0.000000 & 0.000055 & 0.000000 & 0.000000\\
+   Std. dev. & 0.004031 & 0.002831 & 0.005281 & 0.003955 & 0.006211 & 0.007882 & 0.005208 & 0.008395 & -0.004774\\
+   Std. dev. & -0.668778 & -0.103202 & 0.682845 & 0.687379 & 0.022817 & 5.047493 & 0.164912 & 0.841973 & 0.181355\\
+   Kurtosis & 4.965501 & 9.437659 & 5.739862 & 5.317197 & 2.666667 & 60.679966 & 4.370734 & 7.713197 & 2.957841\\
+   \bottomrule
+   \end{tabular}}
+   \caption{Summary Table of the Returns}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 1.2]{Return}
+\caption{Return Histogram}\label{visina8}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.8]{ES}
+\caption{Expected Shortfall}\label{visina8}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.8]{Variance}
+\caption{Variance}\label{visina8}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale = 0.8]{Interactive}
+\caption{Interactive app}\label{visina8}
+\end{figure}
+
+
+The figure 1 shows the distribution of the returns of all these currency positions. It is noticeable that most of the returns are close to a normal distribution with heterogeneity in each pairs. On the heat map of ES (figure 2) we can see that CHF/NOK has the highest downside Risk among all the other currency pairs. And on the heat map of Variances (figure 3) we can also notice that CHF/NOK is attached to the highest variance among all the other Currency pairs. The result of CHF/NOK is robust to changes of alpha, and this can also be seen in the interactive app(figure 4) in our github repository.
+
+\section{Conclusion}
+Both of this riskmeasures has shown that CHF/NOK is the riskiest over the year of 2021. Therefore, during the 2021, we come to a conlusion that CHF/NOK is the riskiest Currency pair position to hold. In another words, to hold the he Norwegian krone (NOK) is the riskiest strategy for a Swiss citizen.
+
+\cite{CieslakEtAlStockReturns}
+\printbibliography
+
+
+
+\end{document}
+
